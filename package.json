@@ -1,0 +1,40 @@
+{
+  "name": "live-map-be",
+  "version": "1.0.0",
+  "description": "Live Map backend",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "NODE_ENV=development nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bryanmontesv/live-map-be.git"
+  },
+  "keywords": [
+    "map",
+    "live",
+    "hapijs",
+    "mariadb"
+  ],
+  "author": "Bryan Montes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bryanmontesv/live-map-be/issues"
+  },
+  "homepage": "https://github.com/bryanmontesv/live-map-be#readme",
+  "dependencies": {
+    "boom": "^7.2.0",
+    "hapi": "^17.5.3",
+    "hapi-swagger": "^9.1.1",
+    "inert": "^5.1.0",
+    "sqlite3": "^4.0.2",
+    "vision": "^5.3.3"
+  },
+  "devDependencies": {
+    "eslint": "^5.4.0"
+  }
+}
