@@ -8,49 +8,48 @@ const locationRoutes = require('./routes/location')
 const isProduction = process.env.NODE_ENV === 'production';
 
 (async () => {
-    const server = await new Hapi.Server({
-      host: 'localhost',
-      port: process.env.PORT || 4040,
-      routes: {
-        validate: {
-          failAction: async (request, h, err) => {
-            if (isProduction) {
-              // In production,log a limited error
-              console.error('ValidationError:', err.message)
-              throw Boom.badRequest(`Invalid request payload input`)
-            } else {
-              // In development return the entire log error
-              console.error(err)
-              throw err
-            }
+  const server = await new Hapi.Server({
+    host: 'localhost',
+    port: process.env.PORT || 4040,
+    routes: {
+      validate: {
+        failAction: async (request, h, err) => {
+          if (isProduction) {
+            // In production,log a limited error
+            console.error('ValidationError:', err.message)
+            throw Boom.badRequest(`Invalid request payload input`)
+          } else {
+            // In development return the entire log error
+            console.error(err)
+            throw err
           }
         }
       }
-    })
-  
-    // Swagger documentation UI
-    await server.register([
-      Inert,
-      Vision,
-      {
-        plugin: HapiSwagger,
-        options: {
-          info: {
-            title: 'LMB API Documentation',
-            version: '29.08.18'
-          }
-        }
-      }
-    ])
-  
-    try {
-      await server.start()
-      console.log(`Server running at: ${server.info.uri}`)
-    } catch (err) {
-      console.log(err)
     }
-  
-    // Server route handler
-    server.route(locationRoutes)
-  })()
-  
+  })
+
+  // Swagger documentation UI
+  await server.register([
+    Inert,
+    Vision,
+    {
+      plugin: HapiSwagger,
+      options: {
+        info: {
+          title: 'LMB API Documentation',
+          version: '29.08.18'
+        }
+      }
+    }
+  ])
+
+  try {
+    await server.start()
+    console.log(`Server running at: ${server.info.uri}`)
+  } catch (err) {
+    console.log(err)
+  }
+
+  // Server route handler
+  server.route(locationRoutes)
+})()

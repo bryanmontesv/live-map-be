@@ -3,7 +3,7 @@
  * Enpoint objects intended for documentation on api/locations
  */
 
-const getLocations = {
+const locations = {
   'hapi-swagger': {
     responses: {
       '400': {
@@ -18,5 +18,5 @@ const getLocations = {
 }
 
 module.exports = {
-    getLocations
+  locations
 }

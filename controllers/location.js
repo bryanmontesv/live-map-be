@@ -1,20 +1,21 @@
 'use strict'
 
-// const locationService = require('../services/location')
+const locationService = require('../services/location')
+const Boom = require('boom')
 
 module.exports = {
   async getLocations () {
     try {
-      return await "All locations :)"
+      return await locationService.getLocations('hello locations')
     } catch (error) {
-      return error
+      return Boom.failedDependency(error)
     }
   },
   async storeLocations () {
     try {
-      return await "stored locations :)"
+      return await locationService.getLocations('hello locations inserted')
     } catch (error) {
-      return error
+      return Boom.badRequest(error)
     }
   }
 }
