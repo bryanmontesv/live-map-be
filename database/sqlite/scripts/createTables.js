@@ -27,8 +27,11 @@ const tableExists = (tableName) => {
       if (!hasTable) {
         return knex.schema.createTable('locations', function (table) {
           table.increments('id').primary()
-          table.string('lat')
-          table.string('long')
+          table.string('latitude')
+          table.string('longitude')
+          table.string('location_name')
+          table.date('open_time')
+          table.date('close_time')
           table.timestamp('updated_at')
           table.timestamp('created_at').defaultTo(knex.fn.now())
         })
@@ -48,6 +51,9 @@ const tableExists = (tableName) => {
     })
 })();
 
+/**
+ * Audit table to store client information.
+ */
 (() => {
   tableExists('audit')
     .then((hasTable) => {

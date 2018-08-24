@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/bryanmontesv/live-map-be#readme",
   "dependencies": {
+    "async": "^2.6.1",
     "boom": "^7.2.0",
     "hapi": "^17.5.3",
     "hapi-swagger": "^9.1.1",

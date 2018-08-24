@@ -1,6 +1,7 @@
 'use strict'
 const locationController = require('../controllers/location')
 const locationDocs = require('../documentation/location')
+const locationPayloads = require('../payloads/location')
 
 module.exports = [
   {
@@ -21,9 +22,12 @@ module.exports = [
       description: 'Update locations modified by the user.',
       notes: 'This endpoint will return a the modified location made by a user.',
       tags: ['api', 'update', 'put', 'locations'],
-      plugins: locationDocs.locations
+      plugins: locationDocs.locations,
+      validate: {
+        payload: locationPayloads.update
+      }
     },
-    handler: locationController.getLocations
+    handler: locationController.updateLocations
   },
   {
     method: 'POST',
@@ -32,8 +36,11 @@ module.exports = [
       description: 'Create a new location stored by a user.',
       notes: 'This endpoint will store a new location made by a user.',
       tags: ['api', 'create', 'post', 'locations'],
-      plugins: locationDocs.locations
+      plugins: locationDocs.locations,
+      validate: {
+        payload: locationPayloads.create
+      }
     },
-    handler: locationController.getLocations
+    handler: locationController.storeLocations
   }
 ]
