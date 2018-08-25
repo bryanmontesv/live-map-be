@@ -1,6 +1,6 @@
 # Technologies used on this project: 
 ![alt text](https://hapijs.com/public/img/logo.svg)
-![alt text](https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/SQLite370.svg/1024px-SQLite370.svg.png)
+![alt text](http://sqlitetutorials.com/img/sqlite-tutorials.png)
 
 
 # Live Map Backend

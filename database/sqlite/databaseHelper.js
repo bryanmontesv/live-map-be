@@ -2,26 +2,25 @@
 const path = require('path')
 const config = require('../../config/index')
 const dbPath = path.resolve(__dirname, config.database.path)
+const knex = require('knex')({ client: config.database.client, useNullAsDefault: config.database.useNullAsDefault })
 const sqlite3 = require('sqlite3').verbose()
-var knex = require('knex')({ client: 'sqlite3' })
 
 // open database in memory
-console.log('conf.database.path', dbPath)
 let db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE, (err) => {
   if (err) {
     return console.error(err.message)
   }
   console.log('Connected to the in-memory SQlite database.')
 })
-
-const closeDbConnection = () => {
-  db.close((err) => {
-    if (err) {
-      return console.error(err.message)
-    }
-    console.log('Close the database connection.')
-  })
-}
+// TODO: CLOSE DATABASE CONNECTION AFTER QUERY
+// const closeDbConnection = () => {
+//   db.close((err) => {
+//     if (err) {
+//       return console.error(err.message)
+//     }
+//     console.log('Close the database connection.')
+//   })
+// }
 
 /**
  *
@@ -44,7 +43,6 @@ let getHelper = (queryStatement) => {
  * @param {String} table database table which is going to work to extract last item/row information
  */
 let runHelper = (queryStatement, table) => {
-  console.log('queryStatement', queryStatement)
   return new Promise((resolve, reject) => {
     db.run(queryStatement, [], function (err) {
       if (err) {
@@ -61,11 +59,10 @@ let runHelper = (queryStatement, table) => {
       .toString()
 
     return getHelper(query)
-  }).then((results) => {
-    return results
-  }).catch((err) => {
-    return err
-  })
+  }).then((results) => results)
+    .catch((err) => {
+      return err
+    })
 }
 
 // close the database connection

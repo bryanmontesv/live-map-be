@@ -1,10 +1,19 @@
 const config = require('../../../config/index')
 const path = require('path')
 const dbPath = path.resolve(__dirname, `../${config.database.path}`)
+const sqlite3 = require('sqlite3').verbose()
+
+new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE, (err) => {
+  if (err) {
+    return console.error(err.message)
+  }
+  console.log('Connected to the in-memory SQlite database.')
+})
 
 var knex = require('knex')({
-  client: 'sqlite3',
-  connection: { filename: dbPath }
+  client: config.database.client,
+  connection: { filename: dbPath },
+  useNullAsDefault: config.database.useNullAsDefault
 })
 
 const tableExists = (tableName) => {

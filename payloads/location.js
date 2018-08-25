@@ -19,7 +19,7 @@ const update = Joi.object().keys({
   longitude: Joi.string().required().description('locations\'s longitude'),
   location_name: Joi.string().required().description('locations\'s name.'),
   open_time: Joi.date().optional().description('locations\'s opening time.'),
-  close_time: Joi.date().optional().description('locations\'s closing time.'),
+  close_time: Joi.date().optional().description('locations\'s closing time.')
 })
 
 const deletion = Joi.object().keys({
