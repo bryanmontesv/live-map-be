@@ -1,6 +1,6 @@
 'use strict'
-
-var knex = require('knex')({ client: 'sqlite3' })
+const config = require('../config/index')
+const knex = require('knex')({ client: config.database.client, useNullAsDefault: config.database.useNullAsDefault })
 const database = require('../database/sqlite/databaseHelper')
 
 const getLocations = () => {

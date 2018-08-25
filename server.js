@@ -12,6 +12,11 @@ const isProduction = process.env.NODE_ENV === 'production';
     host: 'localhost',
     port: process.env.PORT || 4040,
     routes: {
+      cors: { // need to add cors in order to make the enpoints available for the frontend project
+        origin: ['*'],
+        headers: ['Accept', 'Content-Type'],
+        additionalHeaders: ['X-Requested-With']
+      },
       validate: {
         failAction: async (request, h, err) => {
           if (isProduction) {

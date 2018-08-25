@@ -2,7 +2,9 @@
 
 const configEnvironment = {
   database: {
-    path: './liveMap.db'
+    path: './liveMap.db',
+    client: 'sqlite3',
+    useNullAsDefault: true
   }
 }
 
