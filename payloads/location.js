@@ -15,9 +15,9 @@ const create = Joi.object().keys({
 
 const update = Joi.object().keys({
   id: Joi.number().required().description('locations\'s id. Search key.'),
-  latitude: Joi.string().required().description('locations\'s latitude'),
-  longitude: Joi.string().required().description('locations\'s longitude'),
-  location_name: Joi.string().required().description('locations\'s name.'),
+  latitude: Joi.string().description('locations\'s latitude'),
+  longitude: Joi.string().description('locations\'s longitude'),
+  location_name: Joi.string().description('locations\'s name.'),
   open_time: Joi.date().optional().description('locations\'s opening time.'),
   close_time: Joi.date().optional().description('locations\'s closing time.')
 })

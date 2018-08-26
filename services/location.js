@@ -2,10 +2,24 @@
 const config = require('../config/index')
 const knex = require('knex')({ client: config.database.client, useNullAsDefault: config.database.useNullAsDefault })
 const database = require('../database/sqlite/databaseHelper')
+const fields = knex.select(
+  'id',
+  'latitude',
+  'longitude',
+  'location_name',
+  knex.raw("strftime('%H:%M',open_time) as open_time"),
+  knex.raw("strftime('%H:%M',close_time) as close_time")
+)
 
 const getLocations = () => {
   const query = knex
-    .select('*')
+    .select('id',
+      'latitude',
+      'longitude',
+      'location_name',
+      knex.raw("strftime('%H:%M',open_time) as open_time"),
+      knex.raw("strftime('%H:%M',close_time) as close_time")
+    )
     .from('locations')
     .toString()
 
@@ -26,7 +40,7 @@ const createLocation = (payload) => {
     }])
     .toString()
 
-  return database.runHelper(query, 'locations')
+  return database.runHelper(query, 'locations', fields)
 }
 
 /**
@@ -46,7 +60,7 @@ const updateLocation = (payload) => {
     })
     .toString()
 
-  return database.runHelper(query, 'locations')
+  return database.runHelper(query, 'locations', fields)
 }
 
 module.exports = {

@@ -41,8 +41,9 @@ let getHelper = (queryStatement) => {
  *
  * @param {String} queryStatement query string received to insert or update something on certain table
  * @param {String} table database table which is going to work to extract last item/row information
+ * @param {Object} fields knex object, it works for getting special fields with special functions default *
  */
-let runHelper = (queryStatement, table) => {
+let runHelper = (queryStatement, table, fields = '*') => {
   return new Promise((resolve, reject) => {
     db.run(queryStatement, [], function (err) {
       if (err) {
@@ -52,8 +53,10 @@ let runHelper = (queryStatement, table) => {
       resolve(this.lastID > 0 ? this.lastID : queryArray[queryArray.length - 1])
     })
   }).then((lastId) => {
+    // this is ugly and I should change this to another aproach to send strftime but it works good.
+    let queryFields = fields.toString().split('select ')[1] ? fields.toString().split('select ')[1] : fields
     const query = knex
-      .select('*')
+      .select(knex.raw(queryFields))
       .from(table)
       .where({ id: lastId })
       .toString()
