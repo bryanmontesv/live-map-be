@@ -28,6 +28,7 @@ const createTables = () => {
     location_name TEXT,
     open_time INTEGER,
     close_time INTEGER,
+    is_deleted INTEGER DEFAULT 0,
     updated_at DATETIME NOT NULL DEFAULT current_timestamp,
     created_at DATETIME NOT NULL DEFAULT current_timestamp
   )`, (err) => {

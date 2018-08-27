@@ -21,6 +21,7 @@ const getLocations = () => {
       knex.raw("strftime('%H:%M',close_time) as close_time")
     )
     .from('locations')
+    .where('is_deleted', 0)
     .toString()
 
   return database.getHelper(query)
@@ -63,8 +64,25 @@ const updateLocation = (payload) => {
   return database.runHelper(query, 'locations', fields)
 }
 
+/**
+ * Soft deleted location (we won't delete the information, instead of removing it from database)
+ * @param {*} payload location object which is going to be used to "delete"
+ */
+const deleteLocation = (id) => {
+  const query = knex('locations')
+    .where({ id })
+    .update({
+      is_deleted: 1,
+      updated_at: knex.fn.now()
+    })
+    .toString()
+
+  return database.runHelper(query, 'locations', fields)
+}
+
 module.exports = {
   getLocations,
   createLocation,
-  updateLocation
+  updateLocation,
+  deleteLocation
 }
