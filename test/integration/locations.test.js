@@ -23,6 +23,11 @@ describe('Locations', function () {
       })
   })
 
+  it('getAllLocations should return just the 4 locations added on the database', async () => {
+    const findAllLocations = await locationService.getLocations()
+    assert.lengthOf(findAllLocations, 4)
+  })
+
   // Added timeout because windows machine takes a little bit more time to execute.
   it('createLocation should store information on the database', async () => {
     const locationCreated = await locationService.createLocation(locationMock[0])
@@ -37,8 +42,8 @@ describe('Locations', function () {
 
   it('getAllLocations should return all locations on the database', async () => {
     const findAllLocations = await locationService.getLocations()
-    assert.lengthOf(findAllLocations, 2)
-    assert.include(findAllLocations[0].location_name, locationMock[0].location_name)
+    assert.lengthOf(findAllLocations, 6)
+    assert.include(findAllLocations[4].location_name, locationMock[0].location_name)
   })
 
   it('modifiedLocation should return the information updated after execution', async () => {
@@ -50,7 +55,7 @@ describe('Locations', function () {
 
   it('getAllLocations should return all locations on the database included the updated ones', async () => {
     const findAllLocations = await locationService.getLocations()
-    assert.lengthOf(findAllLocations, 2)
-    assert.include(findAllLocations[1].location_name, locationMock[2].location_name)
+    assert.lengthOf(findAllLocations, 6)
+    assert.include(findAllLocations[5].location_name, locationMock[2].location_name)
   })
 })
