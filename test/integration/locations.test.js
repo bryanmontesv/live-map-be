@@ -48,11 +48,9 @@ describe('Locations', function () {
     assert.include(locationModified[0].longitude, locationMock[2].longitude)
   })
 
-  it('getAllLocations should return all locations on the database included the updated ones and return updated_at field', async () => {
+  it('getAllLocations should return all locations on the database included the updated ones', async () => {
     const findAllLocations = await locationService.getLocations()
     assert.lengthOf(findAllLocations, 2)
     assert.include(findAllLocations[1].location_name, locationMock[2].location_name)
-    // we can be sure an insertion was updated because of the updated_at field
-    assert.isDefined(findAllLocations[1].updated_at)
   })
 })
