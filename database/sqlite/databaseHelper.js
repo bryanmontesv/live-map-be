@@ -12,15 +12,6 @@ let db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE, (err) => {
   }
   console.log('Connected to the in-memory SQlite database.')
 })
-// TODO: CLOSE DATABASE CONNECTION AFTER QUERY
-// const closeDbConnection = () => {
-//   db.close((err) => {
-//     if (err) {
-//       return console.error(err.message)
-//     }
-//     console.log('Close the database connection.')
-//   })
-// }
 
 /**
  *
@@ -50,7 +41,7 @@ let runHelper = (queryStatement, table, fields = '*') => {
         reject(err.message)
       }
       const queryArray = queryStatement.split('=')
-      resolve(this.lastID > 0 ? this.lastID : queryArray[queryArray.length - 1])
+      resolve(queryArray[queryArray.length - 1] > 0 ? queryArray[queryArray.length - 1] : this.lastID)
     })
   }).then((lastId) => {
     // this is ugly and I should change this to another aproach to send strftime but it works good.
@@ -67,9 +58,6 @@ let runHelper = (queryStatement, table, fields = '*') => {
       return err
     })
 }
-
-// close the database connection
-// closeDbConnection()
 
 module.exports = {
   getHelper,
