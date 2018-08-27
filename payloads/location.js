@@ -23,7 +23,7 @@ const update = Joi.object().keys({
 })
 
 const deletion = Joi.object().keys({
-  id: Joi.string().required().description('locations\'s id. Search key. This value cannot change and it will be used to soft delete only.')
+  id: Joi.number().required().description('locations\'s id. Search key. This value cannot change and it will be used to soft delete only.')
 })
 
 module.exports = {

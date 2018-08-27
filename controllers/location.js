@@ -24,5 +24,12 @@ module.exports = {
     } catch (error) {
       return Boom.badRequest(error)
     }
+  },
+  async deleteLocation ({ payload: { id } }) {
+    try {
+      return await locationService.deleteLocation(id)
+    } catch (error) {
+      return Boom.badRequest(error)
+    }
   }
 }

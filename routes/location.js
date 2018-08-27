@@ -42,5 +42,19 @@ module.exports = [
       }
     },
     handler: locationController.storeLocations
+  },
+  {
+    method: 'DELETE',
+    path: '/api/locations',
+    config: {
+      description: 'Soft deletion of a given location sent by the user.',
+      notes: 'This endpoint will soft delete a location sent by a user. We do not want to remove the real information from database',
+      tags: ['api', 'delete', 'soft-delete', 'locations'],
+      plugins: locationDocs.locations,
+      validate: {
+        payload: locationPayloads.deletion
+      }
+    },
+    handler: locationController.deleteLocation
   }
 ]
