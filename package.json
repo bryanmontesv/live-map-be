@@ -7,8 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "start": "NODE_ENV=development node ./database/sqlite/scripts/createTables.js && NODE_ENV=development nodemon",
-    "test": "eslint . && NODE_ENV=test node ./database/sqlite/scripts/createTables.js && NODE_ENV=test mocha \"./test/**/*.test.js\" --exit",
+    "start": "NODE_ENV=development node ./database/sqlite/scripts/initDatabase.js && NODE_ENV=development nodemon",
+    "test": "eslint . && NODE_ENV=test node ./database/sqlite/scripts/initDatabase.js && NODE_ENV=test mocha \"./test/**/*.test.js\" --exit",
     "delint": "eslint --fix ."
   },
   "repository": {
