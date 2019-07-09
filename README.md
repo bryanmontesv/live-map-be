@@ -22,6 +22,7 @@ SQLite 3
 ```
 
 Check the SQLite page to download the desired version: https://www.sqlite.org/download.html
+Or just run: `brew install sqlite3`
 Steps to install on Windows: http://www.sqlitetutorial.net/download-install-sqlite/
 
 ### Installing
@@ -31,6 +32,7 @@ A step by step series of examples that tell you how to get a development env run
 No brainer steps:
 
 ```
+npm install -g nodemon
 npm install
 npm start
 ```
