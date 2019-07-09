@@ -1,6 +1,6 @@
 # Technologies used on this project: 
-![Hapi](https://cdn.auth0.com/blog/hapi/hapi-logo-1.png | width=250)
-![sqlite](http://sqlitetutorials.com/img/sqlite-tutorials.png)
+<img src="https://cdn.auth0.com/blog/hapi/hapi-logo-1.png" alt="Hapi" width="250" height="250">
+<img src="http://sqlitetutorials.com/img/sqlite-tutorials.png" alt="sqlite">
 
 
 # Live Map Backend
