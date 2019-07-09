@@ -1,6 +1,6 @@
 # Technologies used on this project: 
-![alt text](https://hapijs.com/public/img/logo.svg)
-![alt text](http://sqlitetutorials.com/img/sqlite-tutorials.png)
+![Hapi](https://cdn.auth0.com/blog/hapi/hapi-logo-1.png | width=250)
+![sqlite](http://sqlitetutorials.com/img/sqlite-tutorials.png)
 
 
 # Live Map Backend
@@ -21,9 +21,9 @@ NodeJs 8.1
 SQLite 3
 ```
 
-Check the SQLite page to download the desired version: https://www.sqlite.org/download.html
-Or just run: `brew install sqlite3`
-Steps to install on Windows: http://www.sqlitetutorial.net/download-install-sqlite/
+- Check the SQLite page to download the desired version: https://www.sqlite.org/download.html
+  - Or just run: `brew install sqlite3`
+  - Steps to install on Windows: http://www.sqlitetutorial.net/download-install-sqlite/
 
 ### Installing
 
